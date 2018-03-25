@@ -1,0 +1,2 @@
+# mastodon-installer
+Install Mastodon
