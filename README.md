@@ -67,7 +67,7 @@ This role installs the [Redis](https://redis.io) key-value store, used by Mastod
 $ vagrant up
 ```
 
-This should provision a new instance within VirtualBox and run all the tests necessary to verify the Ansible playbook is valid. By default it runs the Docker provisioning.
+This should provision a new instance within VirtualBox and run all the tests necessary to verify the Ansible playbook is valid.
 
 # TODO
 
