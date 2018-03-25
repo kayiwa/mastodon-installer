@@ -1,0 +1,14 @@
+---
+- name: Install PostgreSQL packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+    install_recommends: no
+  become: yes
+  with_items:
+      - libpq-dev
+      - postgresql
+      - postgresql-contrib
+      - python-psycopg2

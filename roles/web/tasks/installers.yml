@@ -1,0 +1,30 @@
+---
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+    state: latest
+    install_recommends: no
+  become: yes
+  with_items:
+      - libssl-dev
+      - zlib1g-dev
+      - git-core
+      - build-essential
+      - libxml2-dev
+      - libxslt1-dev
+      - imagemagick
+      - nodejs
+      - yarn
+      - libreadline-dev
+      - ffmpeg
+      - curl
+      - sudo
+
+- name: nodejs alternative
+  become: yes
+  alternatives:
+    name: node
+    link: /usr/bin/node
+    path: /usr/bin/nodejs
