@@ -12,3 +12,4 @@ mastodon_db: "{{ mastodon_user }}_development"
 mastodon_db_port: 5432
 mastodon_db_login_unix_socket: "/var/run/postgresql"
 mastodon_site_name: "{{ your_site_name |default(example) }}"
+example: 'example.com'

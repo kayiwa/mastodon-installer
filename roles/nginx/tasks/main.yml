@@ -7,17 +7,20 @@
   with_items:
     - nginx-full
     - letsencrypt
+  become: yes
 
 - name: remove default site
   file:
     dest: '/etc/nginx/sites-enabled/default'
     state: absent
+  become: yes
 
 - name: install {{ mastodon_site_name }}
   template:
     src: 'mastodon.site.conf.j2'
     dest: '/etc/nginx/sites-available/{{ mastodon_site_name }}.conf'
   notify: restart nginx
+  become: yes
 
 - name: enable {{ mastodon_site_name }}
   file:
@@ -25,3 +28,5 @@
     dest: '/etc/nginx/sites-enabled/{{ mastodon_site_name }}.conf'
     state: link
   notify: restart nginx
+  become: yes
+  ignore_errors: yes
