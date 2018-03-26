@@ -30,3 +30,19 @@
     - redis
   tags:
     - redis
+
+- hosts: all
+  vars_files:
+    - "vars/main.yml"
+  roles:
+    - deploy
+  tags:
+    - deploy
+
+- hosts: all
+  vars_files:
+    - "vars/main.yml"
+  roles:
+    - nginx
+  tags:
+    - nginx
