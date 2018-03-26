@@ -33,3 +33,27 @@
     chdir: "{{ install_dir }}"
   become: yes
   become_user: "{{ mastodon_user }}"
+
+- name: copy mastodon systemd webservice
+  template:
+    src: 'mastodon-web.service.j2'
+    dest: '/etc/systemd/system/mastodon-web.service'
+    owner: root
+    group: root
+  become: yes
+
+- name: copy mastodon systemd sidekiq service
+  template:
+    src: 'mastodon-sidekiq.service.j2'
+    dest: '/etc/systemd/system/mastodon-sidekiq.service'
+    owner: root
+    group: root
+  become: yes
+
+- name: copy mastodon systemd streaming service
+  template:
+    src: 'mastodon-streaming.service.j2'
+    dest: '/etc/systemd/system/mastodon-streaming.service'
+    owner: root
+    group: root
+  become: yes
