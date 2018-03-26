@@ -21,6 +21,17 @@
       - ffmpeg
       - curl
       - sudo
+      - libprotobuf-dev
+      - protobuf-compiler
+      - automake
+      - autotools-dev
+      - dialog
+      - libbison-dev
+      - libgd3
+      - libxpm4
+      - m4
+      - pkg-config
+      - libidn11-dev
 
 - name: nodejs alternative
   become: yes

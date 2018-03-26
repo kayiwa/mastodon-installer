@@ -5,9 +5,11 @@ rbenv_version: v1.1.0
 ruby_build_version: v20170405
 mastodon_user: "mastodon"
 mastodon_home: "/home/{{ mastodon_user }}"
+install_dir: "{{ mastodon_home }}/live"
 rbenv_home: "/usr/local/rbenv"
 mastodon_db_user: "{{ mastodon_user }}"
 mastodon_db: "{{ mastodon_user }}_development"
 mastodon_db_port: 5432
 mastodon_db_login_unix_socket: "/var/run/postgresql"
 mastodon_site_name: "{{ your_site_name |default(example) }}"
+example: 'example.com'

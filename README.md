@@ -72,4 +72,3 @@ This should provision a new instance within VirtualBox and run all the tests nec
 # TODO
 
 - Add LB role
-- Add role for actually cloning/initializing Mastodon, including systemd service configurations

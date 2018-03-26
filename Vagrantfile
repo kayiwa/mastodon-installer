@@ -1,15 +1,14 @@
 # vim: set syntax=ruby:
-# rubocop:disable Metrics/BlockLength
 Vagrant.configure('2') do |config|
-  config.vm.define 'bare' do |bare|
-    bare.vm.box = 'ubuntu/xenial64'
-    bare.vm.network 'private_network', type: 'dhcp'
-    bare.vm.provision 'ansible' do |ansible|
+  config.vm.define 'mastodon' do |mastodon|
+    mastodon.vm.box = 'ubuntu/xenial64'
+    mastodon.vm.network 'private_network', type: 'dhcp'
+    mastodon.vm.provision 'ansible' do |ansible|
       ansible.playbook = 'site.yml'
       ansible.extra_vars = {
         mastodon_db_password: 'CHANGEME'
       }
-      ansible.verbose = true
+      ansible.verbose = 'vvv'
     end
 
   end
