@@ -1,0 +1,4 @@
+# vagrant directory
+.vagrant/
+# ansible break
+*.retry
