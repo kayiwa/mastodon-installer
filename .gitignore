@@ -2,3 +2,5 @@
 .vagrant/
 # ansible break
 *.retry
+# virtualbox log
+*.log
