@@ -1,9 +1,22 @@
 ---
 - name: Bootstrapping
-  gather_facts: False
+  gather_facts: false
   hosts: all
-  roles:
-    - init
+  pre_tasks:
+  - name: Check if Python is installed
+  raw: command -v python
+  register: python_installed
+  ignore_errors: true
+
+- name: Check if apt is installed
+  raw: command -v apt
+  register: apt_installed
+  ignore_errors: true
+
+- name: Bootstrap Python on Ubuntu Linux
+  raw: apt update && apt install -y python
+  when: python_installed|failed and apt_installed|succeeded
+  become: true
 
 - hosts: all
   vars_files:
