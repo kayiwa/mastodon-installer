@@ -1,2 +1,7 @@
 ---
 # tasks file for roles/system_packages
+- name: install mastodon pre-requisite
+  apt:
+    name: "{{ mastodon_system_packages }}"
+    state: present
+    update_cache: true
