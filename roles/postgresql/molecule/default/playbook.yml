@@ -1,0 +1,26 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: postgresql
+      postgres_databases:
+        - name: mastodon_db
+      postgres_users:
+        - name: mastodon_user
+          password: "M45t0pAsSwOrD"
+          db: mastodon_db
+      postgres_hba_entries:
+        - type: local
+          database: all
+          user: all
+          method: peer
+        - type: host
+          database: all
+          user: all
+          address: 127.0.0.1/32
+          method: ident
+        - type: host
+          database: all
+          user: all
+          address: ::1/128
+          method: ident

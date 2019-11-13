@@ -1,0 +1,13 @@
+---
+# vars file for roles/postgresql
+postgres_packages:
+  - postgresql
+  - postgresql-client
+
+postgres_psycopg2: "python-psycopg2"
+
+postgres_dir: "/etc/postgresql/9.6/main"
+
+postgres_conf: "{{ postgres_dir }}/postgresql.conf"
+
+postgres_service: postgresql
