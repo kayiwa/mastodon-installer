@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  role_name: mastodon_iser
+  author: kayiwa
+  description: Role to set Mastodon System User
+  company: huh
+
+  license: MIT
+
+  min_ansible_version: 2.7.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 18.04

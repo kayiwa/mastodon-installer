@@ -1,0 +1,14 @@
+---
+# tasks file for roles/mastodon_user
+- name: Create mastodon user group
+  group:
+    name: "mastodon"
+    state: present
+
+- name: Create mastodon user
+  user:
+    name: "mastodon"
+    group: "mastodon"
+    home: "/var/local/mastodon"
+    shell: "/bin/bash"
+    state: present
