@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  role_name: nodejs
+  author: kayiwa
+  description: Role to install nodejs
+  company: huh
+
+  license: MIT
+
+  min_ansible_version: 2.7.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - 18.04
