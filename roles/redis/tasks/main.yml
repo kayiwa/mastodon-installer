@@ -1,12 +1,17 @@
 ---
-- name: Install Redis packages
-  package:
-    name: "{{ item }}"
-    update_cache: yes
-    cache_valid_time: 3600
-    state: latest
-    install_recommends: no
-  become: yes
-  with_items:
-      - redis-server
-      - redis-tools
+# tasks file for roles/redis
+- name: install redis
+  apt:
+    name: "{{ redis_packages }}"
+    state: present
+  register: redis_install_redis
+
+- name: configure redis
+  template:
+    src: "redis.conf.j2"
+    dest: "{{ redis_configuration_directory }}/{{ redis_configuration_file }}"
+    owner: "{{ redis_owner }}"
+    group: "{{ redis_group }}"
+    mode: "{{ redis_mode }}"
+  notify:
+    - restart redis
