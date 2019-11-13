@@ -27,3 +27,4 @@ mastodon_system_packages:
   - libidn11-dev
   - libicu-dev
   - libjemalloc-dev
+  - curl

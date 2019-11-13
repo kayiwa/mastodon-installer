@@ -1,0 +1,22 @@
+---
+# tasks file for roles/rvm
+- name: Install RVM
+  import_tasks: 'rvm.yml'
+  become: true
+
+- name: Install Ruby and Gems
+  import_tasks: 'rubies.yml'
+  become: true
+
+- name: add mastodon user to rvm
+  user:
+    name: mastodon
+    groups: rvm
+    append: true
+
+- name: source the environment
+  lineinfile:
+    dest: '/etc/environment'
+    regexp: '^'
+    insertafter: EOF
+    line: 'source /usr/local/rvm/scripts/rvm'
