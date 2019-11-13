@@ -7,6 +7,14 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts('all')
 
 
+def test_rvm_file(host):
+    f = host.file('/usr/local/rvm')
+
+    assert f.exists
+    assert f.user == 'root'
+    assert f.group == 'rvm'
+
+
 def test_hosts_file(host):
     f = host.file('/etc/hosts')
 
