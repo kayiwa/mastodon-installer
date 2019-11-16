@@ -1,0 +1,12 @@
+---
+# vars file for roles/postfix
+postfix_packages:
+  - postfix
+
+postfix_service: postfix
+
+postfix_daemon_directory: "/usr/lib/postfix/sbin"
+
+postfix_group: postdrop
+
+postfix_alias_path: "/etc/aliases"
