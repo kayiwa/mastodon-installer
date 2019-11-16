@@ -1,5 +1,4 @@
 ---
-# defaults file for roles/nginx
-# The tcp port nginx should listen on.
-nginx_port: 80
+# vars file for roles/nginx
+nginx_user: "root"
 nginx__upstream_repository: 'deb https://nginx.org/packages/ubuntu/ {{ ansible_distribution_release }} main'

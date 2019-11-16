@@ -1,32 +1,48 @@
 ---
-- name: install nginx and letsencrypt
-  apt:
-    name: "{{ item }}"
-    update_cache: yes
+# tasks file for roles/nginx
+#- name: Get upstream APT GPG key
+#  apt_key:
+#    id: "{{ nginx__upstream_key_id }}"
+#    keyserver: "hkp://keyserver.ubuntu.com"
+#    state: present
+- name: "Set Default APT NGINX Signing Key URL"
+  set_fact:
+    default_keysite: https://nginx.org/keys/nginx_signing.key
+
+- name: "Set APT NGINX Signing Key URL"
+  set_fact:
+    keysite: "{{ nginx_signing_key | default(default_keysite) }}"
+
+- name: "Add APT NGINX Signing Key"
+  apt_key:
+    url: "{{ keysite }}"
+
+- name: Configure upstream APT repository
+  apt_repository:
+    repo: "{{ nginx__upstream_repository }}"
     state: present
-  with_items:
-    - nginx-full
-    - letsencrypt
-  become: yes
 
-- name: remove default site
-  file:
-    dest: '/etc/nginx/sites-enabled/default'
-    state: absent
-  become: yes
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: true
 
-- name: install {{ mastodon_site_name }}
+- name: place nginx.conf
   template:
-    src: 'mastodon.site.conf.j2'
-    dest: '/etc/nginx/sites-available/{{ mastodon_site_name }}.conf'
-  notify: restart nginx
-  become: yes
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify:
+    - restart nginx
 
-- name: enable {{ mastodon_site_name }}
+- name: ensure /etc/nginx/conf.d exists
   file:
-    src: '/etc/nginx/sites-available/{{ mastodon_site_name }}.conf'
-    dest: '/etc/nginx/sites-enabled/{{ mastodon_site_name }}.conf'
-    state: link
-  notify: restart nginx
-  become: yes
-  ignore_errors: yes
+    path: /etc/nginx/conf.d
+    state: directory
+
+- name: place default.conf
+  template:
+    src: default.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+  notify:
+    - restart nginx
