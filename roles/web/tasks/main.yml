@@ -1,6 +1,0 @@
----
-- include: repositories.yml
-- include: installers.yml
-- include: user.yml
-- include: ruby.yml
-  become: true

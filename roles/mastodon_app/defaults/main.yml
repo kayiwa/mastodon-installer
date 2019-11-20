@@ -1,0 +1,4 @@
+---
+# defaults file for roles/mastodon_app
+mastodon_home: "/home/mastodon"
+install_dir: "{{ mastodon_home }}/live"
