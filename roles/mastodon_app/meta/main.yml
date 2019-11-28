@@ -16,4 +16,3 @@ galaxy_info:
 dependencies:
   - role: 'rvm'
   - role: 'nodejs'
-  - role: 'postgresql'

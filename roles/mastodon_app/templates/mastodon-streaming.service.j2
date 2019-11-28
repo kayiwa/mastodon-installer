@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User={{ mastodon_user }}
+User=mastodon
 WorkingDirectory={{ install_dir }}
 Environment="NODE_ENV=production"
 Environment="PORT=4000"
