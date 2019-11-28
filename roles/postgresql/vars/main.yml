@@ -3,6 +3,8 @@
 postgres_packages:
   - postgresql
   - postgresql-client
+  - postgresql-server-dev-all
+  - libpq-dev
 
 postgres_psycopg2: "python-psycopg2"
 

@@ -1,19 +1,26 @@
 ---
 # tasks file for roles/mastodon_app
-- name: create mastodon live site directory
+
+- name: create site directory
   file:
       path: "{{ install_dir }}"
       state: directory
-      owner: "mastodon"
-      group: "mastodon"
-  become: true
-
+   
 - name: clone the repo
   git:
       repo: "https://github.com/tootsuite/mastodon.git"
       dest: "{{ install_dir }}"
       update: yes
       accept_hostkey: true
+  become: true
+
+- name: grant mastodon site directory permissions
+  file:
+      path: "{{ install_dir }}"
+      state: directory
+      recurse: true
+      owner: "mastodon"
+      group: "mastodon"
   become: true
 
 - name: use bundler to install dependencies

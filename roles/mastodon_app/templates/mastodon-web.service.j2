@@ -1,0 +1,17 @@
+[Unit]
+Description=mastodon-web
+After=network.target
+
+[Service]
+Type=simple
+User=mastodon
+WorkingDirectory={{ install_dir }}
+Environment="RAILS_ENV=production"
+Environment="PORT=3000"
+ExecStart=/usr/local/bin/bundle exec puma -C config/puma.rb
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
