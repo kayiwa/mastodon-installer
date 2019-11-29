@@ -20,42 +20,7 @@
 
 - hosts: all
   vars_files:
-    - "vars/main.yml"
-  roles:
-    - web
-  environment:
-    RBENV_ROOT: "{{ rbenv_home }}"
-  tags:
-    - web
-
-- hosts: all
-  vars_files:
-    - "vars/main.yml"
-  roles:
-    - postgres
-  tags:
-    - postgres
-
-- hosts: all
-  vars_files:
-    - "vars/main.yml"
-  roles:
-    - redis
-  tags:
-    - redis
-
-- hosts: all
-  vars_files:
-    - "vars/main.yml"
-  roles:
-    - deploy
-  tags:
-    - deploy
-
-- hosts: all
-  vars_files:
-    - "vars/main.yml"
+    - "group_vars/main.yml"
   roles:
     - nginx
-  tags:
-    - nginx
+    - postfix
